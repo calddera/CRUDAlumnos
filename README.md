@@ -5,4 +5,6 @@ el cual contiene el script para crear la base de datos con sus respectivas tabla
 
 Se usó la versión  5.7.34 de MYSQL Server.
 
+Favor de configurar el archivo Web.conf con los datos correctos de la cadena de conexión una vez que se haya generado la base de datos en el servidor de Mysql
+
 Acrtualmente el proyecto tiene terminado el CRUD para la entidad ALUMNO, sin embargo, ya está la capa de datos para CRUD en Profesores y Grado
