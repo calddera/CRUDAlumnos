@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="crudalumnosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="alumno">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellidos" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GeneroId" Type="Int32" Nullable="false" />
+    <Property Name="FechaNac" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="alumno_grado" Relationship="Self.alumno_grado_ibfk_1" FromRole="alumno" ToRole="alumno_grado" />
+    <NavigationProperty Name="genero" Relationship="Self.alumno_ibfk_1" FromRole="alumno" ToRole="genero" />
+  </EntityType>
+  <EntityType Name="alumno_grado">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AlumnoId" Type="Int32" Nullable="false" />
+    <Property Name="GradoId" Type="Int32" Nullable="false" />
+    <Property Name="SeccionId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="alumno" Relationship="Self.alumno_grado_ibfk_1" FromRole="alumno_grado" ToRole="alumno" />
+    <NavigationProperty Name="grado" Relationship="Self.alumno_grado_ibfk_2" FromRole="alumno_grado" ToRole="grado" />
+    <NavigationProperty Name="seccion" Relationship="Self.alumno_grado_ibfk_3" FromRole="alumno_grado" ToRole="seccion" />
+  </EntityType>
+  <EntityType Name="genero">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="alumno" Relationship="Self.alumno_ibfk_1" FromRole="genero" ToRole="alumno" />
+    <NavigationProperty Name="profesor" Relationship="Self.profesor_ibfk_1" FromRole="genero" ToRole="profesor" />
+  </EntityType>
+  <EntityType Name="grado">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ProfesorId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="alumno_grado" Relationship="Self.alumno_grado_ibfk_2" FromRole="grado" ToRole="alumno_grado" />
+    <NavigationProperty Name="profesor" Relationship="Self.grado_ibfk_1" FromRole="grado" ToRole="profesor" />
+  </EntityType>
+  <EntityType Name="profesor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellidos" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GeneroId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="genero" Relationship="Self.profesor_ibfk_1" FromRole="profesor" ToRole="genero" />
+    <NavigationProperty Name="grado" Relationship="Self.grado_ibfk_1" FromRole="profesor" ToRole="grado" />
+  </EntityType>
+  <EntityType Name="seccion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="alumno_grado" Relationship="Self.alumno_grado_ibfk_3" FromRole="seccion" ToRole="alumno_grado" />
+  </EntityType>
+  <Association Name="alumno_grado_ibfk_1">
+    <End Role="alumno" Type="Self.alumno" Multiplicity="1" />
+    <End Role="alumno_grado" Type="Self.alumno_grado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="alumno">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="alumno_grado">
+        <PropertyRef Name="AlumnoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="alumno_ibfk_1">
+    <End Role="genero" Type="Self.genero" Multiplicity="1" />
+    <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="genero">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="alumno">
+        <PropertyRef Name="GeneroId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="alumno_grado_ibfk_2">
+    <End Role="grado" Type="Self.grado" Multiplicity="1" />
+    <End Role="alumno_grado" Type="Self.alumno_grado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="grado">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="alumno_grado">
+        <PropertyRef Name="GradoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="alumno_grado_ibfk_3">
+    <End Role="seccion" Type="Self.seccion" Multiplicity="1" />
+    <End Role="alumno_grado" Type="Self.alumno_grado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="seccion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="alumno_grado">
+        <PropertyRef Name="SeccionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="profesor_ibfk_1">
+    <End Role="genero" Type="Self.genero" Multiplicity="1" />
+    <End Role="profesor" Type="Self.profesor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="genero">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="profesor">
+        <PropertyRef Name="GeneroId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="grado_ibfk_1">
+    <End Role="profesor" Type="Self.profesor" Multiplicity="1" />
+    <End Role="grado" Type="Self.grado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profesor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="grado">
+        <PropertyRef Name="ProfesorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="crudalumnosEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="alumno" EntityType="Self.alumno" />
+    <EntitySet Name="alumno_grado" EntityType="Self.alumno_grado" />
+    <EntitySet Name="genero" EntityType="Self.genero" />
+    <EntitySet Name="grado" EntityType="Self.grado" />
+    <EntitySet Name="profesor" EntityType="Self.profesor" />
+    <EntitySet Name="seccion" EntityType="Self.seccion" />
+    <AssociationSet Name="alumno_grado_ibfk_1" Association="Self.alumno_grado_ibfk_1">
+      <End Role="alumno" EntitySet="alumno" />
+      <End Role="alumno_grado" EntitySet="alumno_grado" />
+    </AssociationSet>
+    <AssociationSet Name="alumno_ibfk_1" Association="Self.alumno_ibfk_1">
+      <End Role="genero" EntitySet="genero" />
+      <End Role="alumno" EntitySet="alumno" />
+    </AssociationSet>
+    <AssociationSet Name="alumno_grado_ibfk_2" Association="Self.alumno_grado_ibfk_2">
+      <End Role="grado" EntitySet="grado" />
+      <End Role="alumno_grado" EntitySet="alumno_grado" />
+    </AssociationSet>
+    <AssociationSet Name="alumno_grado_ibfk_3" Association="Self.alumno_grado_ibfk_3">
+      <End Role="seccion" EntitySet="seccion" />
+      <End Role="alumno_grado" EntitySet="alumno_grado" />
+    </AssociationSet>
+    <AssociationSet Name="profesor_ibfk_1" Association="Self.profesor_ibfk_1">
+      <End Role="genero" EntitySet="genero" />
+      <End Role="profesor" EntitySet="profesor" />
+    </AssociationSet>
+    <AssociationSet Name="grado_ibfk_1" Association="Self.grado_ibfk_1">
+      <End Role="profesor" EntitySet="profesor" />
+      <End Role="grado" EntitySet="grado" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

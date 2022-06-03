@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="crudalumnosModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="alumno">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="Apellidos" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="GeneroId" Type="int" Nullable="false" />
+    <Property Name="FechaNac" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="alumno_grado">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AlumnoId" Type="int" Nullable="false" />
+    <Property Name="GradoId" Type="int" Nullable="false" />
+    <Property Name="SeccionId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="genero">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="grado">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="ProfesorId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="profesor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="Apellidos" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="GeneroId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="seccion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <Association Name="alumno_grado_ibfk_1">
+    <End Role="alumno" Type="Self.alumno" Multiplicity="1" />
+    <End Role="alumno_grado" Type="Self.alumno_grado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="alumno">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="alumno_grado">
+        <PropertyRef Name="AlumnoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="alumno_grado_ibfk_2">
+    <End Role="grado" Type="Self.grado" Multiplicity="1" />
+    <End Role="alumno_grado" Type="Self.alumno_grado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="grado">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="alumno_grado">
+        <PropertyRef Name="GradoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="alumno_grado_ibfk_3">
+    <End Role="seccion" Type="Self.seccion" Multiplicity="1" />
+    <End Role="alumno_grado" Type="Self.alumno_grado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="seccion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="alumno_grado">
+        <PropertyRef Name="SeccionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="alumno_ibfk_1">
+    <End Role="genero" Type="Self.genero" Multiplicity="1" />
+    <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="genero">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="alumno">
+        <PropertyRef Name="GeneroId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="grado_ibfk_1">
+    <End Role="profesor" Type="Self.profesor" Multiplicity="1" />
+    <End Role="grado" Type="Self.grado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profesor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="grado">
+        <PropertyRef Name="ProfesorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="profesor_ibfk_1">
+    <End Role="genero" Type="Self.genero" Multiplicity="1" />
+    <End Role="profesor" Type="Self.profesor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="genero">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="profesor">
+        <PropertyRef Name="GeneroId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="crudalumnosModelStoreContainer">
+    <EntitySet Name="alumno" EntityType="Self.alumno" Schema="crudalumnos" store:Type="Tables" />
+    <EntitySet Name="alumno_grado" EntityType="Self.alumno_grado" Schema="crudalumnos" store:Type="Tables" />
+    <EntitySet Name="genero" EntityType="Self.genero" Schema="crudalumnos" store:Type="Tables" />
+    <EntitySet Name="grado" EntityType="Self.grado" Schema="crudalumnos" store:Type="Tables" />
+    <EntitySet Name="profesor" EntityType="Self.profesor" Schema="crudalumnos" store:Type="Tables" />
+    <EntitySet Name="seccion" EntityType="Self.seccion" Schema="crudalumnos" store:Type="Tables" />
+    <AssociationSet Name="alumno_grado_ibfk_1" Association="Self.alumno_grado_ibfk_1">
+      <End Role="alumno" EntitySet="alumno" />
+      <End Role="alumno_grado" EntitySet="alumno_grado" />
+    </AssociationSet>
+    <AssociationSet Name="alumno_grado_ibfk_2" Association="Self.alumno_grado_ibfk_2">
+      <End Role="grado" EntitySet="grado" />
+      <End Role="alumno_grado" EntitySet="alumno_grado" />
+    </AssociationSet>
+    <AssociationSet Name="alumno_grado_ibfk_3" Association="Self.alumno_grado_ibfk_3">
+      <End Role="seccion" EntitySet="seccion" />
+      <End Role="alumno_grado" EntitySet="alumno_grado" />
+    </AssociationSet>
+    <AssociationSet Name="alumno_ibfk_1" Association="Self.alumno_ibfk_1">
+      <End Role="genero" EntitySet="genero" />
+      <End Role="alumno" EntitySet="alumno" />
+    </AssociationSet>
+    <AssociationSet Name="grado_ibfk_1" Association="Self.grado_ibfk_1">
+      <End Role="profesor" EntitySet="profesor" />
+      <End Role="grado" EntitySet="grado" />
+    </AssociationSet>
+    <AssociationSet Name="profesor_ibfk_1" Association="Self.profesor_ibfk_1">
+      <End Role="genero" EntitySet="genero" />
+      <End Role="profesor" EntitySet="profesor" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

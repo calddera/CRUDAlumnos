@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="crudalumnosModelStoreContainer" CdmEntityContainer="crudalumnosEntities">
+    <EntitySetMapping Name="alumno">
+      <EntityTypeMapping TypeName="crudalumnosModel.alumno">
+        <MappingFragment StoreEntitySet="alumno">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="GeneroId" ColumnName="GeneroId" />
+          <ScalarProperty Name="FechaNac" ColumnName="FechaNac" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="alumno_grado">
+      <EntityTypeMapping TypeName="crudalumnosModel.alumno_grado">
+        <MappingFragment StoreEntitySet="alumno_grado">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AlumnoId" ColumnName="AlumnoId" />
+          <ScalarProperty Name="GradoId" ColumnName="GradoId" />
+          <ScalarProperty Name="SeccionId" ColumnName="SeccionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="genero">
+      <EntityTypeMapping TypeName="crudalumnosModel.genero">
+        <MappingFragment StoreEntitySet="genero">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="grado">
+      <EntityTypeMapping TypeName="crudalumnosModel.grado">
+        <MappingFragment StoreEntitySet="grado">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="ProfesorId" ColumnName="ProfesorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="profesor">
+      <EntityTypeMapping TypeName="crudalumnosModel.profesor">
+        <MappingFragment StoreEntitySet="profesor">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="GeneroId" ColumnName="GeneroId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="seccion">
+      <EntityTypeMapping TypeName="crudalumnosModel.seccion">
+        <MappingFragment StoreEntitySet="seccion">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
