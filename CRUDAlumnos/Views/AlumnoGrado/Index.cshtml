@@ -1,0 +1,44 @@
+﻿@model IEnumerable<CRUDAlumnos.Models.ViewModels.AlumnoGrado.ListaAlumnoGradoViewModel>
+
+@{
+    ViewBag.Title = "Lista de Matriculas";
+}
+
+<h2>Lista de Matriculas</h2>
+
+<p>
+    @Html.ActionLink("Nuevo Matriculado", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AlumnoName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GradoName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SeccionName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AlumnoName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GradoName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SeccionName)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

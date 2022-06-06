@@ -35,6 +35,25 @@ namespace CRUDAlumnos.Models.Services
             return response;
         }
 
+        public List<GradoViewModel> GetAllList()
+        {
+            List<GradoViewModel> response = new List<GradoViewModel>();
+            var data = _gradoRepo.GetAll();
+
+            if (data != null && data.Any())
+            {
+                data.ForEach(e =>
+                {
+                    response.Add(new GradoViewModel()
+                    {
+                        Id = e.Id,
+                        Name = e.Nombre,
+                    });
+                });
+            }
+            return response;
+        }
+
         internal void Create(GradoViewModel grado)
         {
             try

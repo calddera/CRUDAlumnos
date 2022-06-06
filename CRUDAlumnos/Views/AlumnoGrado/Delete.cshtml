@@ -1,0 +1,21 @@
+﻿@model CRUDAlumnos.Models.ViewModels.AlumnoGrado.AlumnoGradoViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Estás seguro de eliminar esta matricula?</h3>
+<div>
+    <hr />
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-danger" /> |
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    }
+</div>

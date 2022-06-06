@@ -55,6 +55,25 @@ namespace CRUDAlumnos.Models.Services
             }
         }
 
+        internal List<AlumnoViewModel> GetAllList()
+        {
+            List<AlumnoViewModel> response = new List<AlumnoViewModel>();
+            var data = _alumnoRepo.GetAll();
+
+            if (data != null && data.Any())
+            {
+                data.ForEach(e =>
+                {
+                    response.Add(new AlumnoViewModel()
+                    {
+                        Id = e.Id,
+                        Name = $"{e.Nombre} {e.Apellidos}",
+                    });
+                });
+            }
+            return response;
+        }
+
         internal void Update(int id, AlumnoViewModel alumno)
         {
             try

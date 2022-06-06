@@ -173,6 +173,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AlumnoGradoController.cs" />
     <Compile Include="Controllers\AlumnosController.cs" />
     <Compile Include="Controllers\GradosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -207,20 +208,26 @@
     <Compile Include="Data\profesor.cs">
       <DependentUpon>CRUDAlumnosModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Repositories\AlumnoGradoRepository.cs" />
     <Compile Include="Data\Repositories\AlumnoRepository.cs" />
     <Compile Include="Data\Repositories\GeneroRepository.cs" />
     <Compile Include="Data\Repositories\GradoRepository.cs" />
     <Compile Include="Data\Repositories\ProfesorRepository.cs" />
+    <Compile Include="Data\Repositories\SeccionRepository.cs" />
     <Compile Include="Data\seccion.cs">
       <DependentUpon>CRUDAlumnosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Services\AlumnoGradoService.cs" />
     <Compile Include="Models\Services\AlumnoService.cs" />
     <Compile Include="Models\Services\GeneroService.cs" />
     <Compile Include="Models\Services\GradoService.cs" />
     <Compile Include="Models\Services\ProfesorService.cs" />
+    <Compile Include="Models\Services\SeccionService.cs" />
+    <Compile Include="Models\ViewModels\AlumnoGrado\AlumnoGradoViewModel.cs" />
+    <Compile Include="Models\ViewModels\AlumnoGrado\ListaAlumnoGradoViewModel.cs" />
     <Compile Include="Models\ViewModels\Alumnos\AlumnoViewModel.cs" />
     <Compile Include="Models\ViewModels\Alumnos\ListaAlumnosViewModel.cs" />
     <Compile Include="Models\ViewModels\Genero\GeneroViewModel.cs" />
@@ -228,6 +235,7 @@
     <Compile Include="Models\ViewModels\Grados\ListaGradosViewModel.cs" />
     <Compile Include="Models\ViewModels\Profesor\ListaProfesoresViewModel.cs" />
     <Compile Include="Models\ViewModels\Profesor\ProfesorViewModel.cs" />
+    <Compile Include="Models\ViewModels\Seccion\SeccionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +303,10 @@
     <Content Include="Views\Grados\Create.cshtml" />
     <Content Include="Views\Grados\Edit.cshtml" />
     <Content Include="Views\Grados\Delete.cshtml" />
+    <Content Include="Views\AlumnoGrado\Index.cshtml" />
+    <Content Include="Views\AlumnoGrado\Create.cshtml" />
+    <Content Include="Views\AlumnoGrado\Edit.cshtml" />
+    <Content Include="Views\AlumnoGrado\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
