@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 
 namespace CRUDAlumnos.Data.Repositories
 {
@@ -30,7 +31,21 @@ namespace CRUDAlumnos.Data.Repositories
         {
             try
             {
-                var _grado = context.grado.Find(id);
+                var _grado = context.grado.Include(x=>x.profesor).FirstOrDefault(x=>x.Id == id);
+                return _grado;
+            }
+            catch (Exception ex)
+            {
+                // Registrar la excepción en algún log o DB
+                return null;
+            }
+        }
+
+        public List<grado> GetAll()
+        {
+            try
+            {
+                var _grado = context.grado.ToList();
                 return _grado;
             }
             catch (Exception ex)
@@ -45,6 +60,7 @@ namespace CRUDAlumnos.Data.Repositories
             {
                 var _grado = context.grado.Find(id);
                 _grado.Nombre = grado.Nombre;
+                _grado.ProfesorId = grado.ProfesorId;
                 context.SaveChanges();
                 return _grado;
 

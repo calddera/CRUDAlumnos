@@ -1,13 +1,13 @@
-﻿@model IEnumerable<CRUDAlumnos.Models.ViewModels.Alumnos.ListaAlumnosViewModel>
+﻿@model IEnumerable<CRUDAlumnos.Models.ViewModels.Profesor.ListaProfesoresViewModel>
 
 @{
-    ViewBag.Title = "Lista de Alumnos";
+    ViewBag.Title = "Lista de Profesores";
 }
 
-<h2>Lista de Alumnos</h2>
+<h2>Lista de Profesores</h2>
 
 <p>
-    @Html.ActionLink("Nuevo Alumno", "Create")
+    @Html.ActionLink("Nuevo Profesor", "Create")
 </p>
 <table class="table">
     <tr>
@@ -18,27 +18,18 @@
             @Html.DisplayNameFor(model => model.SurName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Birthday)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.GeneroName)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-
-    var fechaNac = item.Birthday.ToString("dd/MM/yyyy");
-
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.SurName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => fechaNac)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.GeneroName)

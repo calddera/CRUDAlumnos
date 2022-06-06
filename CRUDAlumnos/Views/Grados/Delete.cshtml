@@ -1,0 +1,30 @@
+﻿@model CRUDAlumnos.Models.ViewModels.Grados.GradoViewModel
+
+@{
+    ViewBag.Title = "Borrar Grado";
+}
+
+<h2>Borrar Grado</h2>
+
+<h3>Estás seguro de eliminar este grado?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-danger" /> |
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    }
+</div>
